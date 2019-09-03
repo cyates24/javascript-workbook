@@ -68,15 +68,20 @@ function diagonalWin() {
 function checkForWin() {
   
   if(horizontalWin()===true){
-    return true
+    return true;
   }
   if(verticalWin()===true){
-    return true
+    return true;
   }
   if(diagonalWin()===true){
-    return true
+    return true;
+  }
+  else{
+    return false;
   }
 }
+
+
 
 function switchPlayer(){
 if(playerTurn==='X'){
