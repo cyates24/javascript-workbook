@@ -81,6 +81,10 @@ function checkForWin() {
   }
 }
 
+  
+
+
+
 
 
 function switchPlayer(){
@@ -93,11 +97,19 @@ else{
 }
 
 function ticTacToe(row, column) {
+  if((row > 3) || (column > 3)){
+console.log('nope')
+return false;}
+if('X'==='0'){
+  console.log('nadaa')
+}
+  
   board[row][column]=playerTurn;
   horizontalWin();
   verticalWin();
   diagonalWin();
   switchPlayer();
+  
 }
 
 function getPrompt() {
