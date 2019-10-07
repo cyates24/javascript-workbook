@@ -81,7 +81,7 @@ class redTeammate extends player{
   constructor(canThrowBall,canDodgeBall,hasPaid,isHealthy,yearsExperience,mascot,teamColor){
     super(canThrowBall,canDodgeBall,hasPaid,isHealthy,yearsExperience);
     this.mascot = RedRaiders;
-    this.teamColor = teamColor;
+    this.teamColor = teamColor; 
 }
 }
 

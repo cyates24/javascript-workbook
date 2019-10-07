@@ -52,6 +52,7 @@ class Board {
       [7, 0], [7, 2], [7, 4], [7, 6]];
       //define positions
       for(let p = 0; p <= 11; p++){
+        //create checker instances set to variables
         let whiteChecker = new Checker('white');
         this.checkers.push(whiteChecker);
         let position = whitePositions[p];
@@ -68,13 +69,13 @@ class Board {
   legalMove(which,where) {
    
     console.log(which,where);
-    
+    //keeps players from going outside of the grid
     if(which.length !== 2 || which[0] > 7 || which[1] > 7){
-      console.log('Please enter numbers less than 8')
+      console.log('Please enter a number within the grid')
       return false;
     }
     if(where.length !== 2 || where[0] > 7 || where[1] > 7){
-      console.log('Please enter numbers less than 8')
+      console.log('Please enter a number within the grid')
       return false;
     }
     
@@ -84,25 +85,23 @@ class Board {
     
   }
   validMove(whichPiece,toWhere){
-      // white moves
-var start = parseInt(whichPiece);
-var end = parseInt(toWhere);
-
-console.log(start,end);
+    var start = parseInt(whichPiece);
+    var end = parseInt(toWhere);
+    
+    console.log(start,end);
+    
+    // only allows players to move diagonaly 
+    //flip start and end so the value's not negative
       if(player == 'white'){
         if(end - start !==9 && end - start !== 11){
           console.log("Invalid Move");
           return false
         }
         }
-        // if(start - end !== 18 || start - end !== 22){
-  
-        //   return false
-        // }
+       
       
       //black moves
       if(player == 'black'  ){
-        //flip start and end so the value's not negative
         if(start - end !== 9 && start - end !==11 ){
           console.log("Invalid Move");
           return false
@@ -117,21 +116,23 @@ console.log(start,end);
   killChecker(whichPiece,toWhere){
     var start = parseInt(whichPiece);
     var end = parseInt(toWhere);
+    console.log(start,end);
     var jumpRightWhite = this.board.grid[((start)[0]) +1][((start)[1]) +1] 
     var jumpLeftWhite = this.board.grid[((start)[0]) +1][((start)[1]) -1]
     var jumpRightBlack = this.board.grid[((start)[0]) -1][((start)[1]) +1]
     var jumpLeftBlack = this.board.grid[((start)[0]) -1][((start)[1]) -1]
     
     if(player == 'white'){
-       if(start - end !== 18 && start - end !== 22){
+       if(end - start !== 18 && end - start !== 22){
          return false
-       }else{
-        if(jumpRightWhite === 'white' && whichPiece - toWhere === 18){
-          this.board.grid[(start[0]) -1][(start[1]) +1] = null
+       }
+       else{
+        if(jumpRightWhite === 'white' && end - start === 18){
+          this.board.grid[(start[0]) +1][(start[1]) +1] = null
           return true;
        }
-       if(jumpLeftWhite === 'white' && whichPiece - toWhere === 18){
-        this.board.grid[(start[0]) -1][(start[1]) -1] = null
+       if(jumpLeftWhite === 'white' && end - start === 18){
+        this.board.grid[(start[0]) +1][(start[1]) -1] = null
         return true;
      }
      else{
@@ -143,13 +144,14 @@ console.log(start,end);
        if(player == 'black'  ){
        if(start - end !== 18 && start - end !== 22){
          return false
-       }else{
-        if(jumpRightBlack === 'black' && whichPiece - toWhere === 18){
-          this.board.grid[(start[0]) +1][(start[1]) +1] = null
+       }
+       else{
+        if(jumpRightBlack === 'black' && start - end === 18){
+          this.board.grid[(start[0]) -1][(start[1]) +1] = null
           return true;
        }
-       if(jumpLeftBlack === 'black' && whichPiece - toWhere === 18){
-        this.board.grid[(start[0]) +1][(start[1]) -1] = null
+       if(jumpLeftBlack === 'black' && start - end === 18){
+        this.board.grid[(start[0]) -1][(start[1]) -1] = null
         return true;
      }
      else{
